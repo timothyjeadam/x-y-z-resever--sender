@@ -1,3 +1,5 @@
-basic.forever(function () {
-	
-})
+
+
+def on_forever():
+    pass
+basic.forever(on_forever)
