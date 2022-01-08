@@ -1,20 +1,25 @@
 datalogger.onLogFull(function () {
-    datalogger.deleteLog()
+    logging = false
+    basic.showString("Full")
 })
 input.onButtonPressed(Button.A, function () {
     if (logging == false) {
-        basic.showString("is not logging")
+        logging = true
     } else if (logging == true) {
-        basic.showString("is logging")
+        basic.showIcon(IconNames.Yes)
+        logging = true
     }
-    logging = true
 })
 input.onButtonPressed(Button.AB, function () {
     datalogger.deleteLog()
 })
 input.onButtonPressed(Button.B, function () {
-    basic.showString("am I plugged in")
+    logging = false
 })
 let logging = false
 logging = false
-datalogger.logData([datalogger.createCV("strencth", input.acceleration(Dimension.Strength))])
+loops.everyInterval(20, function () {
+    if (logging) {
+        datalogger.logData([datalogger.createCV("strencth", input.acceleration(Dimension.Strength))])
+    }
+})
